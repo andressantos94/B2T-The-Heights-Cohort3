@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+	</head>
+	<body>
+		<p id="par"></p>
+		<script type="text/javascript">
+			var fruits = ["apple","orange","kiwi"];
+
+			var input = prompt("Add more fruit:");
+
+			fruits.push(input.toLowerCase());
+			console.log(fruits);
+
+			fruits.sort();
+			console.log(fruits);
+
+			document.getElementById("par").innerHTML = fruits.join(" with ");
+		</script>
+	</body>
+</html>
