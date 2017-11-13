@@ -5,30 +5,38 @@
 	</head>
 	<body>
 		<script type="text/javascript">
+			//Declaring the arrays
 			var color = ["Blue","Green","Red","Orange","Violet","Indigo","Yellow"];
 			var o = ["th","st","nd","rd"];
 
+			//declaring the number of elements in array color
 			var max = color.length;
 
+			//declarating a variable to count and use it in the while bucle
 			var cont = 0;
 
+			//Do this while cont be less than max, which means that when cont be equal to 7, It's' going to finish
 			while  (cont < max)
 			{
+				//the special case when I need to use the "st"
 				if (cont == 0)
 				{
 					console.log((cont+1)+o[1]+" choice is "+color[cont]+".");
 					cont=cont +1;
 				}
+				//the special case when I need to use the "nd"
 				if (cont == 1)
 				{
 					console.log((cont+1)+o[2]+" choice is "+color[cont]+".");
 					cont=cont +1;
 				}
+				//the special case when I need to use the "rd"
 				if (cont == 2)
 				{
 					console.log((cont+1)+o[3]+" choice is "+color[cont]+".");
 					cont=cont +1;
 				}
+				//For the rest of the elements, It's going to be "th"
 				if (cont > 2 )
 				{
 					console.log((cont+1)+o[0]+" choice is "+color[cont]+".");
