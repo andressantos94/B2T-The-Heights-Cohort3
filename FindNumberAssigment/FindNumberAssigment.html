@@ -12,7 +12,7 @@
 			while(max<3){
 				input = parseInt(prompt("Give me a number please:"));
 				if(max==0){
-					numbers.push(input);
+					numbers.unshift(input);
 					max++
 				}else if(input > numbers[0]){
 					numbers.unshift(input);
