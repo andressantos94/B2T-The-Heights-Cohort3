@@ -9,20 +9,25 @@
 			var max = 0;
 			var input = 0;
 			var numbers = [];
+			//It is going to do it 3 times which is the number of inputs for the assigment
 			while(max<3){
 				input = parseInt(prompt("Give me a number please:"));
+				//condition for the fist number, putting it into the array numbers
 				if(max==0){
 					numbers.unshift(input);
 					max++
-				}else if(input > numbers[0]){
+				}
+				//for all athers numbers, If my new number is greater, It's going to be first in my array
+				else if(input > numbers[0]){
 					numbers.unshift(input);
 					max++
-				}else{
+				}
+				//If It is not greater, just put it at the end of my array
+				else{
 					numbers.push(input);
 					max++
 				}
 			}
-			
 
 			console.log(numbers[0] + " is the largest number");
 		</script>
