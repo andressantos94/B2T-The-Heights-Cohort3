@@ -4,21 +4,27 @@
 		<title></title>
 	</head>
 	<body>
-		<h1 id="screen"></h1>
+		<h2 id="screen"></h2>
 		<script type="text/javascript">
 			var int = 1;
+			var array = [];
 			while(int<101){
 				if(int%3 == 0 && int%5 == 0){
-					document.getElementById("screen").innerHTML += " FizzBuzz,";
+					array[int-1]="FizzBuzz";
+					//document.getElementById("screen").innerHTML += " FizzBuzz,";
 				}else if(int%3 == 0){
-					document.getElementById("screen").innerHTML += " Fizz,";
+					array[int-1]="Fizz";
+					//document.getElementById("screen").innerHTML += " Fizz,";
 				}else if(int%5 == 0){
-					document.getElementById("screen").innerHTML += " Buzz,";
+					array[int-1]="Buzz";
+					//document.getElementById("screen").innerHTML += " Buzz,";
 				}else{
-					document.getElementById("screen").innerHTML += " "+int+",";
+					array[int-1]=int;
+					//document.getElementById("screen").innerHTML += " "+int+",";	
 				}
 				int++;
 			}
+			document.getElementById("screen").innerHTML = array.join(", ");
 		</script>
 	</body>
 </html>
