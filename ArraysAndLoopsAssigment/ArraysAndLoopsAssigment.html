@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+	</head>
+	<body>
+		<h1 id="h1"></h1>
+		<script type="text/javascript">
+			var color = ["Blue","Green","Red","Orange","Violet","Indigo","Yellow"];
+			var o = ["th","st","nd","rd"];
+			var arr = [];
+
+			for(var c=0;c<color.length;c++){
+				if(c==0){
+					arr[c] = (c+1) + o[1]+" choice is "+color[c]; 
+				}else if(c==1){
+					arr[c] = (c+1) + o[2]+" choice is "+color[c];
+				}else if(c==2){
+					arr[c] = (c+1) + o[3]+" choice is "+color[c];
+				}else{
+					arr[c] = (c+1) + o[0]+" choice is "+color[c];
+				}
+			}
+
+			document.getElementById("h1").innerHTML = arr.join("<br>");
+			console.log(array);
+		</script>
+	</body>
+</html>
