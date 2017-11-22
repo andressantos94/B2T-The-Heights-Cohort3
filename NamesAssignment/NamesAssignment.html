@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+	</head>
+	<body>
+		<p id="display"></p>
+		<form>
+			First name: <input type="text" id="fname" value="Curtis"><br>
+			Last Name: <input type="text" id="lname" value="Jackson"><br>
+			<input type="button" value="Submit" onclick="getFormvalue()">
+		</form>
+
+		<script type="text/javascript">
+			
+			function getFormvalue() {
+				var name = document.getElementById("fname").value;
+				var formattedName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+				var last = document.getElementById("lname").value;
+				var formattedLast = last.charAt(0).toUpperCase() + last.slice(1).toLowerCase(); 
+				document.getElementById("display").innerHTML = "Hello " + formattedName + " "+ formattedLast; 
+			}
+
+		</script>
+
+	</body>
+</html>
