@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+	</head>
+	<body>
+
+		<h1 id="h1"></h1>
+
+		<script type="text/javascript">
+			
+			var library = [
+				{author:"Bill Gates",title:"The Road Ahead",readingStatus:true},
+				{author:"Steve Jobs",title:"Walter Isaacson",readingStatus:true},
+				{author:"Suzanne Collins",title:"Mockingjay:The Final Book of The Hunger Games",readingStatus:false}
+
+			];
+
+			var aux;
+			for(var i=0;i<library.length;i++){
+				aux = library[i];
+				if(aux.readingStatus){
+					document.getElementById("h1").innerHTML += "Already read "+ aux.title+" by "+aux.author+"<br>";
+				}else{
+					document.getElementById("h1").innerHTML += "You still need to read "+ aux.title+" by "+aux.author+"<br>";
+				}
+			}
+
+		</script>
+
+	</body>
+</html>
