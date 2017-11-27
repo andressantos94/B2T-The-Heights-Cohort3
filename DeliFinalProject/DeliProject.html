@@ -56,8 +56,15 @@
 							document.getElementById("myTable").innerHTML += "<tr><td>"+(g+1)+"</td><td>"+costu[g].name+"</td><td>"+costu[g].order+"</td></tr>";
 						}
 					}
-				}else if(n1 == undefined || o1 == undefined){
-					document.getElementById("h3").innerHTML = "Information is missing. Please check your order.";	
+				}else if(n1.length == 0 || o1.length == 0){
+					document.getElementById("h3").innerHTML = "Information is missing. Please check your order.";
+					if(costu.length == 0){
+						document.getElementById("myTable").innerHTML += "<tr><td colspan='3'>There are no costumers in line</td></tr>";
+					}else{
+						for(var g=0;g<costu.length;g++){
+							document.getElementById("myTable").innerHTML += "<tr><td>"+(g+1)+"</td><td>"+costu[g].name+"</td><td>"+costu[g].order+"</td></tr>";
+						}
+					}	
 				}else{
 
 					costu.push({name : formattedn1,order : o1});
