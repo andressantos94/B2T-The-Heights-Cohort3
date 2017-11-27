@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+	</head>
+	<body>
+
+		<form>
+			Costumer's Name: <input type="text" id="nam1" value=""><br>
+			Costumer's Order: <input type="text" id="ord1" value=""><br><br>
+			<input type="button" value="Add Customer" onclick="addCostumer()"><br>
+			<input type="button" value="Costumer Served" onclick="servCostumer()">
+		</form><br><br>
+
+		<h3 id="h3"></h3>
+
+		<table id="myTable" border="1">
+			<thead>
+				<tr>
+					<th>Pos.</th>
+					<th>Name</th>
+					<th>Order</th>
+				</tr>
+			</thead>
+			
+		</table><br><br>
+
+		<script type="text/javascript">
+
+			var costu = [];	
+			if(costu.length == 0){
+				document.getElementById("myTable").innerHTML += "<tr><td colspan='3'>There are no costumers in line</td></tr>";
+			}
+
+	
+			function addCostumer() {
+
+				document.getElementById("h3").innerHTML = "";
+
+				var rows = document.getElementById("myTable").rows.length;
+				console.log("Rows: "+rows);
+				for(var r=1;r<rows;r++){
+					console.log("r = "+r);
+					document.getElementById("myTable").deleteRow(1);
+				}
+
+
+
+					var n1 = document.getElementById("nam1").value;
+					var formattedn1 = n1.charAt(0).toUpperCase() + n1.slice(1).toLowerCase();
+					var o1 = document.getElementById("ord1").value;
+
+					costu.push({name : formattedn1,order : o1});
+
+
+					console.log("Orders: "+costu.length);
+				
+
+					for(var g=0;g<costu.length;g++){
+
+						document.getElementById("myTable").innerHTML += "<tr><td>"+(g+1)+"</td><td>"+costu[g].name+"</td><td>"+costu[g].order+"</td></tr>";
+
+					}	
+			}
+			
+			function servCostumer() {
+				
+				document.getElementById("h3").innerHTML = "";
+
+				var row = document.getElementById("myTable").rows.length;
+				for(var y=1;y<row;y++){
+					console.log("rborrar = "+y);
+					document.getElementById("myTable").deleteRow(1);
+				}	
+
+				if(costu.length==0){
+					document.getElementById("myTable").innerHTML += "<tr><td colspan='3'>There are no costumers in line</td></tr>";
+				}else{
+					var name = costu[0].name;
+					var food = costu[0].order;
+					costu.shift();
+
+					document.getElementById("h3").innerHTML = name + " was served "+ food;	
+
+					if(costu.length==0){
+					document.getElementById("myTable").innerHTML += "<tr><td colspan='3'>There are no costumers in line</td></tr>";
+					}else{
+
+
+						for(var f=0; f<costu.length;f++){
+							document.getElementById("myTable").innerHTML += "<tr><td>"+(f+1)+"</td><td>"+costu[f].name+"</td><td>"+costu[f].order+"</td></tr>";
+						}
+					}
+				}	
+
+			}
+
+			console.log(costu);
+
+		</script>
+
+	</body>
+</html>
