@@ -4,26 +4,97 @@
 		<title></title>
 	</head>
 	<body>
+		<style type="text/css">
+			
+			table, tr, td{ 
+				border:solid 5px #44FF88;
+				margin:auto;
+				font-size: 100px;
+				text-align: center;
+			} 
+			td{
+				width: 200px;
+				height: 200px;
+			}
+			td:hover{
+				background-color: #CCCCCC; 
+			}
+		</style>
 
 		<table id="myTable">
 			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td onclick="makeMove(this);"></td>
+				<td onclick="makeMove(this);"></td>
+				<td onclick="makeMove(this);"></td>
 			</tr>
 			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td onclick="makeMove(this);"></td>
+				<td onclick="makeMove(this);"></td>
+				<td onclick="makeMove(this);"></td>
 			</tr>
 			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td onclick="makeMove(this);"></td>
+				<td onclick="makeMove(this);"></td>
+				<td onclick="makeMove(this);"></td>
 			</tr>
 		</table>
 		<script type="text/javascript">
-			
+			var player;
+			var cont = 0;
+			var gameWon = false;
+
+			function makeMove(pos) {
+				var player;
+				if(gameWon){
+					player="";
+				}else if(cont%2==0){
+					player = "X";
+					cont++;
+				}else{
+					player = "O";
+					cont++;
+				}
+
+				if(pos.innerHTML == ""){
+					pos.innerHTML = player;
+				}
+
+				evalBoard(player);
+				
+			}
+
+			function evalBoard(pla){
+
+				var board = document.getElementsByTagName("td");
+
+				var row1Win = board[0].innerHTML != "" && board[0].innerHTML == board[1].innerHTML && board[1].innerHTML == board[2].innerHTML;
+
+				var row2Win = board[3].innerHTML != "" && board[3].innerHTML == board[4].innerHTML && board[4].innerHTML == board[5].innerHTML;
+
+				var row3Win = board[6].innerHTML != "" && board[6].innerHTML == board[7].innerHTML && board[7].innerHTML == board[8].innerHTML;
+
+				var col1Win = board[0].innerHTML != "" && board[0].innerHTML == board[3].innerHTML && board[3].innerHTML == board[6].innerHTML;
+
+				var col2Win = board[1].innerHTML != "" && board[1].innerHTML == board[4].innerHTML && board[4].innerHTML == board[7].innerHTML;
+
+				var col3Win = board[2].innerHTML != "" && board[2].innerHTML == board[5].innerHTML && board[5].innerHTML == board[8].innerHTML;
+
+				var diag1Win = board[0].innerHTML != "" && board[0].innerHTML == board[4].innerHTML && board[4].innerHTML == board[8].innerHTML;
+
+				var diag2Win = board[2].innerHTML != "" && board[2].innerHTML == board[4].innerHTML && board[4].innerHTML == board[6].innerHTML;
+
+				var fullBoard = board[0].innerHTML!="" && board[1].innerHTML!="" && board[2].innerHTML!="" && board[3].innerHTML!="" && board[4].innerHTML!="" && board[5].innerHTML!="" && board[6].innerHTML!="" && board[7].innerHTML!="" && board[8].innerHTML!="";
+
+				if(!gameWon && (row1Win || row2Win || row3Win || col1Win || col2Win || col3Win || diag1Win || diag2Win)){
+						console.log(pla+" won the game!!!");
+						gameWon = true;
+				}else{ 
+
+					if(fullBoard){
+						console.log("It's a tie!!!");
+					}
+				}	
+			}
 
 		</script>
 	</body>
