@@ -208,11 +208,13 @@
 						document.getElementById("win").innerHTML = "It's a tie!";
 						input[1].disabled = true;
 						input[2].disabled = true;
+						input[3].disabled = true;
 						ini=0;
 					}else if(deWon){
 						document.getElementById("win").innerHTML = "Dealer Won!";
 						input[1].disabled = true;
 						input[2].disabled = true;
+						input[3].disabled = true;
 						ini=0;
 						ear -= parseInt(document.getElementById("bet").value);
 						document.getElementById("earns").innerHTML = "Total Earns: $"+ear;
@@ -220,6 +222,7 @@
 						document.getElementById("win").innerHTML = "You Won!";
 						input[1].disabled = true;
 						input[2].disabled = true;
+						input[3].disabled = true;
 						ini=0;
 						ear += parseInt(document.getElementById("bet").value);
 						console.log(ear);
@@ -239,11 +242,13 @@
 						document.getElementById("win").innerHTML = "It's a tie!";
 						input[1].disabled = true;
 						input[2].disabled = true;
+						input[3].disabled = true;
 						ini=0;
 						}else if(d>h||h==0){
 							document.getElementById("win").innerHTML = "You Won!";
 							input[1].disabled = true;
 							input[2].disabled = true;
+							input[3].disabled = true;
 							ini=0;
 							ear += parseInt(document.getElementById("bet").value);
 							console.log(ear);
@@ -252,6 +257,7 @@
 							document.getElementById("win").innerHTML = "Dealer Won!";
 							input[1].disabled = true;
 							input[2].disabled = true;
+							input[3].disabled = true;
 							ini=0;
 							ear -= parseInt(document.getElementById("bet").value);
 							document.getElementById("earns").innerHTML = "Total Earns: $"+ear;
@@ -260,6 +266,7 @@
 						document.getElementById("win").innerHTML = "You Won!";
 						input[1].disabled = true;
 						input[2].disabled = true;
+						input[3].disabled = true;
 						ini=0;
 						ear += parseInt(document.getElementById("bet").value);
 						console.log(ear);
@@ -268,6 +275,7 @@
 						document.getElementById("win").innerHTML = "You busted!";
 						input[1].disabled = true;
 						input[2].disabled = true;
+						input[3].disabled = true;
 						ini=0;
 						ear -= parseInt(document.getElementById("bet").value);
 						document.getElementById("earns").innerHTML = "Total Earns: $"+ear;
