@@ -16,7 +16,6 @@
 		<h1 id="win"></h1>
 
 		<script type="text/javascript">
-			
 			var ini = 0;
 			var ear = 0;
 			var cardD = [];
@@ -25,31 +24,24 @@
 				var input = document.getElementsByTagName("input");
 				input[1].disabled = true;
 				input[2].disabled = true;
+				input[3].disabled = true;
 				document.getElementById("earns").innerHTML += ear;
-
 			}
 
 			function start() {
-				
-
 				document.getElementById("win").innerHTML = "";
 				input[1].disabled = false;
 				input[2].disabled = false;
+				input[3].disabled = false;
 				cardD=[];
 				cardH=[];
 				ini=0;
 
-
 				makeCards();
-
-
 				evaluate(cardD,cardH);
-
-
 			}
 
 			function makeCards() {
-
 				console.log("Este es el valor de ini al empezar las cartas:"+ini);
 				ini++;
 				if(ini==1){
@@ -119,7 +111,6 @@
 				h1s[1].innerHTML = "Your Hand: "+cardH.join(", ");
 
 				console.log("Este es el valor de ini al finalizar las cartas:"+ini);
-
 			}
 
 			function evaluate(d,h) {
@@ -208,17 +199,11 @@
 						toHa+=ha[m];
 					} 
 				}
-
-				//totD += toD;
-				//totH += toHa;
-
 				console.log("Este es el total del dealer:"+toD);
 				console.log("Este es el total del hand:"+toHa);
 				console.log("Este es el valor de ini a la mitad de evaluacion:"+ini);
 
-
 				if(ini==1){
-
 					if(deWon&&haWon){
 						document.getElementById("win").innerHTML = "It's a tie!";
 						input[1].disabled = true;
@@ -243,17 +228,13 @@
 
 						console.log("Continua el juego porque nadie gano en la primera ronda...");
 					}
-
 				}else{	
-					//console.log("Estos son los totales de d y h a la mitad de evaluacion: "+totD+", "+totH);
-
 					var d = 21-toD;
 					var h = 21-toHa;
 
 					console.log("Esta es d:"+d+" y esta es h:"+h);
 
 					if(toD<21 && toHa<21 && ini>10){
-
 						if(d==h){
 						document.getElementById("win").innerHTML = "It's a tie!";
 						input[1].disabled = true;
@@ -311,6 +292,5 @@
 			}
 
 		</script>
-
 	</body>
 </html>
