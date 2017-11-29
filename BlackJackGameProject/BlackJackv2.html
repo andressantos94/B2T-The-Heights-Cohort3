@@ -35,7 +35,6 @@
 				document.getElementById("win").innerHTML = "";
 				input[1].disabled = false;
 				input[2].disabled = false;
-				input[3].disabled = false;
 				cardD=[];
 				cardH=[];
 				ini=0;
@@ -57,45 +56,49 @@
 					var carD = [parseInt(Math.random()*13),parseInt(Math.random()*13)];
 					var carH = [parseInt(Math.random()*13),parseInt(Math.random()*13)];
 				}else{
-					var carD = [parseInt(Math.random()*13)];
+					//var carD = [parseInt(Math.random()*13)];
 					var carH = [parseInt(Math.random()*13)];
 				}
 
 				console.log("Estas son las nuevas cartas sin formatear: "+carD +","+carH);
 
-				for(var i=0; i<carD.length;i++){
-					switch(carD[i]){
-						case 0:
-							carD[i] = "A";
-							break;	
-						case 10:
-							carD[i] = "J";
-							break;
-						case 11:
-							carD[i] = "Q";
-							break;
-						case 12:
-							carD[i] = "K";
-							break;
-						default:
-							carD[i] += 1;
-							break; 
+				if(ini==1){
+					for(var i=0; i<carD.length;i++){
+						switch(carD[i]){
+							case 0:
+								carD[i] = "A";
+								break;	
+							case 10:
+								carD[i] = "J";
+								break;
+							case 11:
+								carD[i] = "Q";
+								break;
+							case 12:
+								carD[i] = "K";
+								break;
+							default:
+								carD[i] += 1;
+								break; 
+						}
 					}
-					switch(carH[i]){
+				}
+				for(var k=0; k<carH.length;k++){
+					switch(carH[k]){
 						case 0:
-							carH[i] = "A";
+							carH[k] = "A";
 							break;
 						case 10:
-							carH[i] = "J";
+							carH[k] = "J";
 							break;
 						case 11:
-							carH[i] = "Q";
+							carH[k] = "Q";
 							break;
 						case 12:
-							carH[i] = "K";
+							carH[k] = "K";
 							break;
 						default:
-							carH[i] += 1;	
+							carH[k] += 1;	
 							break; 
 					}
 
@@ -108,7 +111,7 @@
 					cardD = carD;
 					cardH = carH;
 				}else{
-					cardD.push(carD[0]);
+					//cardD.push(carD[0]);
 					cardH.push(carH[0]);
 				}
 				
@@ -130,66 +133,81 @@
 				var haWon = false;
 
 
-
 				for(var j=0; j<de.length;j++){
 					if(de[j]=="A"){
 						if(ini==1 && de[j+1]==10 || de[j+1]=="J" || de[j+1]=="Q" || de[j+1]=="K"){
 							toD=21;
 							deWon = true;
-							break;
-						}else if(de[j+1]=="A"){
-							toD+=1;
 						}else{
-							if(ini==2&&(toD+11)<=21){
-								toD+=11;
-							}else{
-								if((toD+11)<=21){
-									toD+=11;
+							var aux=0;
+							for(var n=0; n<de.length;n++){
+								if(de[n]=="A"){
+									aux+=11;
+								}else if(de[n]=="J" || de[n]=="Q" || de[n]=="K"){
+									aux+=10;
 								}else{
-									toD+=1;
+									aux+=de[n];
 								}
 							}
+							if(aux>21&&de[j]=="A"){
+								toD+=1;
+							}else if(aux<=21&&de[j]=="A"){
+								toD+=11;
+							}else if(de[j]=="J" || de[j]=="Q" || de[j]=="K"){
+								toD+=10;
+							}else{
+								toD+=de[j];
+							}
 						}
-					}else if(de[j]=="J"||de[j]=="Q"||de[j]=="K"){
+					}else if(de[j]=="J"|| de[j]=="Q" || de[j]=="K"){
 						if(ini==1 && de[j+1]=="A"){
 							toD=21;
 							deWon = true;
-							break;
 						}else{ 
 							toD+=10;
 						}
 					}else{
 						toD+=de[j];
 					}
+				}
 
-					if(ha[j]=="A"){
-						if(ini==1 && ha[j+1]==10 || ha[j+1]=="J" || ha[j+1]=="Q" || ha[j+1]=="K"){
+				for(var m=0; m<ha.length;m++){
+					if(ha[m]=="A"){
+						if(ini==1 && (ha[m+1]==10 || ha[m+1]=="J" || ha[m+1]=="Q" || ha[m+1]=="K")){
 							toHa=21;
 							haWon = true;
-							break;
-						}else if(ha[j+1]=="A"){
-							toHa+=1;
 						}else{
-							if((toHa+11)<=21){
-								toHa+=11;
-							}else{
+							var aux2=0;
+							for(var n=0; n<ha.length;n++){
+								if(ha[n]=="A"){
+									aux2+=11;
+								}else if(ha[n]=="J" || ha[n]=="Q" || ha[n]=="K"){
+									aux2+=10;
+								}else{
+									aux2+=ha[n];
+								}
+							}
+							if(aux2>21&&ha[m]=="A"){
 								toHa+=1;
+							}else if(aux2<=21&&ha[m]=="A"){
+								toHa+=11;
+							}else if(ha[m]=="J" || ha[m]=="Q" || ha[m]=="K"){
+								toHa+=10;
+							}else{
+								toHa+=ha[m];
 							}
 						}
-					}else if(ha[j]==10||ha[j]=="J"||ha[j]=="Q"||ha[j]=="K"){
-						if(ini==1 && ha[j+1]=="A"){
+					}else if(ha[m]==10||ha[m]=="J"||ha[m]=="Q"||ha[m]=="K"){
+						if(ini==1 && ha[m+1]=="A"){
 							toHa=21;
 							haWon = true;
-							break;
 						}else{
 							toHa+=10;
 						}
 					}else{
-						toHa+=ha[j];
-					}
-
-					
-				} 
+						toHa+=ha[m];
+					} 
+				}
 
 				//totD += toD;
 				//totH += toHa;
@@ -223,7 +241,7 @@
 						document.getElementById("earns").innerHTML = "Total Earns: $"+ear;
 					}else{
 
-						console.log("Esta entrando al else sin codigo");
+						console.log("Continua el juego porque nadie gano en la primera ronda...");
 					}
 
 				}else{	
@@ -257,71 +275,26 @@
 							ear -= parseInt(document.getElementById("bet").value);
 							document.getElementById("earns").innerHTML = "Total Earns: $"+ear;
 						}
-					}else if(d<0 && h<0 && d==h){
-						document.getElementById("win").innerHTML = "It's a tie!";
-						input[1].disabled = true;
-						input[2].disabled = true;
-						ini=0;
-					}else if(d<0 && h<0 && d<h){
-						document.getElementById("win").innerHTML = "Dealer busted!";
+					}else if(h==0){
+						document.getElementById("win").innerHTML = "You Won!";
 						input[1].disabled = true;
 						input[2].disabled = true;
 						ini=0;
 						ear += parseInt(document.getElementById("bet").value);
+						console.log(ear);
 						document.getElementById("earns").innerHTML = "Total Earns: $"+ear;
-					}else if(d<0 && h<0 && d>h){
+					}else if(h<0){
 						document.getElementById("win").innerHTML = "You busted!";
 						input[1].disabled = true;
 						input[2].disabled = true;
 						ini=0;
 						ear -= parseInt(document.getElementById("bet").value);
 						document.getElementById("earns").innerHTML = "Total Earns: $"+ear;
-					}else{
-						if(toD<21 && toHa<21){
-							console.log("Continua el juego...");
-						}else{
-							if(d<0 && h<0){
-								document.getElementById("win").innerHTML = "It's a tie!";
-								input[1].disabled = true;
-								input[2].disabled = true;
-								ini=0;
-							}else if(d<0){
-								document.getElementById("win").innerHTML = "Dealer busted!";
-								input[1].disabled = true;
-								input[2].disabled = true;
-								ini=0;
-								ear += parseInt(document.getElementById("bet").value);
-								document.getElementById("earns").innerHTML = "Total Earns: $"+ear;
-							}else if(h<0){
-								document.getElementById("win").innerHTML = "You busted!";
-								input[1].disabled = true;
-								input[2].disabled = true;
-								ini=0;
-								ear -= parseInt(document.getElementById("bet").value);
-								document.getElementById("earns").innerHTML = "Total Earns: $"+ear;
-							}else if (d<h){
-								document.getElementById("win").innerHTML = "Dealer Won!";
-								input[1].disabled = true;
-								input[2].disabled = true;
-								ini=0;
-								ear -= parseInt(document.getElementById("bet").value);
-								document.getElementById("earns").innerHTML = "Total Earns: $"+ear;
-							}else{
-								document.getElementById("win").innerHTML = "You Won!";
-								input[1].disabled = true;
-								input[2].disabled = true;
-								ini=0;
-								ear += parseInt(document.getElementById("bet").value);
-								console.log(ear);
-								document.getElementById("earns").innerHTML = "Total Earns: $"+ear;
-							}
-						}
 					}
 				}
 				console.log("Este es el valor de ini al finalizar la evaluacion:"+ini);
-
-
 			}
+
 
 			function hit() {
 
