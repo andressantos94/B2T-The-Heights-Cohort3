@@ -48,7 +48,7 @@
 			<tr>
 				<th><input type="button" value="*" onclick="operation(this)"></th>
 				<th><input type="button" value="/" onclick="operation(this)"></th>
-				<th><input id="resu" type="button" value="=" onclick="result(this)" ></th>
+				<th><input type="button" value="=" onclick="result(this)"></th>
 
 			</tr>
 		</table>
@@ -57,35 +57,39 @@
 
 			var i=0;
 			var auxn="";
-			var auxo="";
-			var n=[];
-			var o=[];
-			var r=[];
+			var flag = false;
 
-			document.addEventListener("keydown",function (e) {
+			document.addEventListener("keydown",function (e){
 				if(e.keyCode == 27){
 					document.getElementById("h1").innerHTML="";
 					auxn="";
-					n=[];
-					o=[];
-					r=[];
 				}else if(e.keyCode == 13){
-					console.log("Esta es auxn antes de evaluar result al enter press key:"+auxn);
+					console.log("This is auxn before result(), when press enter key:"+auxn);
+					flag=true;
 					result();
 				}
 			});	
+
+			document.addEventListener("keyup",function (e){
+				if(e.keyCode == 13){
+					flag=false;
+				}
+			});
+
 			
 			function screen(num) {
 
-				console.log(auxn);
+				if(flag==false){
+				console.log("This is auxn before user enter a number:"+auxn);
 				document.getElementById("h1").innerHTML+=num.value;
 				auxn=document.getElementById("h1").innerHTML;
+				console.log("This is auxn after user enter a number:"+auxn);
+				}
+
 			}
 
 			function operation(ope) {
 				
-				//auxn=0;
-				var temp = "";
 				var checkOp = document.getElementById("h1").innerHTML;
 				console.log(checkOp);
 				console.log(checkOp.length-1);
@@ -94,7 +98,7 @@
 				console.log(condition);
 				if(condition){
 					temp = auxn.slice(0,auxn.length-1);
-					document.getElementById("h1").innerHTML= temp;
+					document.getElementById("h1").innerHTML= temp + ope.value;
 					auxn=document.getElementById("h1").innerHTML;
 					i++;
 				}else{
@@ -105,38 +109,12 @@
 			}
 
 			function result() {
-				var jump=0;
-				var numb="";
-				var res="";
-				for(var b=0;b<auxn.length;b++){
-					if(auxn[b]=="+"||auxn[b]=="-"||auxn[b]=="*"||auxn[b]=="/"){
-						n.push(parseInt(numb));
-						o.push(auxn[b]);
-						numb="";
-						jump=2;
-					}else if(jump%2==0){
-						console.log("Este es numb antes de guardarlo:"+numb);
-						numb+=auxn[b];
-						if(b==auxn.length-1){
-							n.push(parseInt(numb));
-						}
-					}else{
-						numb+=auxn[b];
-						console.log("Este va siendo numb luego de la iteracion:"+numb);
-						jump=1;
-					}
-				}
 
-				console.log("Result numbers:"+n);
-				console.log("Result operators:"+o);
-
-				console.log("Esto es lo que hay en la cadena antes de evaluar:"+auxn);
+				console.log("This is auxn before evaluate result:"+auxn);
 				document.getElementById("h1").innerHTML="";
 				document.getElementById("h1").innerHTML= eval(auxn);
-				auxn=document.getElementById("h1").innerHTML;
-				r.push(auxn);
+				console.log("Result:"+eval(auxn));
 				auxn="";
-				console.log("Result results:"+r);
 
 			}
 
