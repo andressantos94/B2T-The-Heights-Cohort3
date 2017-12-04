@@ -68,6 +68,7 @@
 			var imaDe = [];
 			var imaHa = [];
 			var totHand = 0;
+			var snd;
 			var sounds = ["bong.mp3","applause.mp3","eviltoy.mp3","brokenglass.mp3"];
 			var aces=["Ab1.png","Ab2.png","Ar1.png","Ar2.png"];
 			var twos=["2b1.png","2b2.png","2r1.png","2r2.png"];
@@ -114,7 +115,13 @@
 				ini=0;
 
 				
-				sound("bong.mp3");
+				//sound("bong.mp3");
+				if(ini>0){
+					snd.currentTime=0;
+				}
+					snd = new Audio("bong.mp3");
+					snd.play();
+				
 				makeCards();
 				evaluate(cardD,cardH);
 			}
@@ -397,6 +404,8 @@
 					}else if(deWon){
 						//document.getElementById("win").innerHTML = "Dealer Won!";
 						images[9].src="DealerWon.png";
+						snd = new Audio("eviltoy.mp3");
+						snd.play();
 						input[1].disabled = true;
 						input[2].disabled = true;
 						input[3].disabled = true;
@@ -406,6 +415,8 @@
 					}else if(haWon){
 						//document.getElementById("win").innerHTML = "You Won!";
 						images[9].src="YouWon.png";
+						snd = new Audio("applause.mp3");
+						snd.play();
 						input[1].disabled = true;
 						input[2].disabled = true;
 						input[3].disabled = true;
@@ -434,6 +445,8 @@
 						}else if(d>h||h==0){
 							//document.getElementById("win").innerHTML = "You Won!";
 							images[9].src="YouWon.png";
+							snd = new Audio("applause.mp3");
+							snd.play();
 							input[1].disabled = true;
 							input[2].disabled = true;
 							input[3].disabled = true;
@@ -444,6 +457,8 @@
 						}else if(d<h||d==0){
 							//document.getElementById("win").innerHTML = "Dealer Won!";
 							images[9].src="DealerWon.png";
+							snd = new Audio("eviltoy.mp3");
+							snd.play();
 							input[1].disabled = true;
 							input[2].disabled = true;
 							input[3].disabled = true;
@@ -454,6 +469,8 @@
 					}else if(h==0){
 						//document.getElementById("win").innerHTML = "You Won!";
 						images[9].src="YouWon.png";
+						snd = new Audio("applause.mp3");
+						snd.play();
 						input[1].disabled = true;
 						input[2].disabled = true;
 						input[3].disabled = true;
@@ -464,6 +481,8 @@
 					}else if(d==0){
 						//document.getElementById("win").innerHTML = "Dealer Won!";
 						images[9].src="DealerWon.png";
+						snd = new Audio("eviltoy.mp3");
+						snd.play();
 						input[1].disabled = true;
 						input[2].disabled = true;
 						input[3].disabled = true;
@@ -473,6 +492,8 @@
 					}else if(h<0){
 						//document.getElementById("win").innerHTML = "You busted!";
 						images[9].src="YouBust2.png";
+						snd = new Audio("brokenglass.mp3");
+						snd.play();
 						input[1].disabled = true;
 						input[2].disabled = true;
 						input[3].disabled = true;
