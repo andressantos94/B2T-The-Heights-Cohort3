@@ -4,23 +4,87 @@
 		<title></title>
 	</head>
 	<body>
-		<h1 id="dealer">Dealer: </h1>
-		<h1 id="hand">Your Hand: </h1>
+
+		<style type="text/css">
+			div{
+				display: inline-block;
+				width: 800px
+				margin: auto;	
+			}
+			img{
+				height: 110px;
+				width: 80px;
+				position: absolute padding-right: 40px;
+			}
+			h1{
+				padding-left: 230px;
+			}
+			form{
+				padding-top: 5px;
+				padding-left: 160px;
+
+			}
+			body{
+				background: #327113;
+			}
+		</style>
+		
+		<img style="height: 160px; width: 350px; padding-left: 155px" src="LogoBlackJackAndres2.png"><br>
+		<img style="height: 75px; width: 100px;" src="dealer3.png">
+		<div>
+			<img src="">
+			<img src="">
+			<img src="">
+			<img src="">
+			<img src="">
+			<img src="">
+			<img src="">
+		</div>
+		<br>
+		<img style="padding-left: 300px; height: 100px; width: 90px;" src="versus.png"><br>
+		<div>
+			<img src="">
+			<img src="">
+			<img src="">
+			<img src="">
+			<img src="">
+			<img src="">
+			<img src="">
+		</div>
+		<img src="you.png">
+		<h1 id="earns">Total Earns: $</h1>
 		<form>
 			<input type="button" value="Start" onclick="start()">
 			<input type="button" value="Hit" onclick="hit()">
 			<input type="button" value="Stay" onclick="stay()">
 			Raise Bet: <input type="text" id="bet" value="5">
 		</form>
-		<h1 id="earns">Total Earns: $</h1>
-		<h1 id="win"></h1>
 
 		<script type="text/javascript">
 			var ini = 0;
 			var ear = 0;
 			var cardD = [];
 			var cardH = [];
+			var imaDe = [];
+			var imaHa = [];
 			var totHand = 0;
+			var sounds = ["bong.mp3","applause.mp3","eviltoy.mp3","brokenglass.mp3"];
+			var aces=["Ab1.png","Ab2.png","Ar1.png","Ar2.png"];
+			var twos=["2b1.png","2b2.png","2r1.png","2r2.png"];
+			var threes=["3b1.png","3b2.png","3r1.png","3r2.png"];
+			var fours=["4b1.png","4b2.png","4r1.png","4r2.png"];
+			var fives=["5b1.png","5b2.png","5r1.png","5r2.png"];
+			var sixs=["6b1.png","6b2.png","6r1.png","6r2.png"];
+			var sevens=["7b1.png","7b2.png","7r1.png","7r2.png"];
+			var eights=["8b1.png","8b2.png","8r1.png","8r2.png"];
+			var nines=["9b1.png","9b2.png","9r1.png","9r2.png"];
+			var tens=["10b1.png","10b2.png","10r1.png","10r2.png"];
+			var js=["Jb1.png","Jb2.png","Jr1.png","Jr2.png"];
+			var qs=["Qb1.png","Qb2.png","Qr1.png","Qr2.png"];
+			var ks=["Kb1.png","Kb2.png","Kr1.png","Kr2.png"];
+			var images = document.getElementsByTagName("img");
+
+
 			if(ini==0){
 				var input = document.getElementsByTagName("input");
 				input[1].disabled = true;
@@ -30,14 +94,27 @@
 			}
 
 			function start() {
-				document.getElementById("win").innerHTML = "";
+				//document.getElementById("win").innerHTML = "";
+				images[9].src = "versus.png";
+				for(var t=0;t<imaDe.length;t++){
+					images[t+2].src="";
+				}
+				for(var p=16;p>16-imaHa.length;p--){
+					images[p].src="";
+				}
 				input[1].disabled = false;
 				input[2].disabled = false;
 				input[3].disabled = false;
 				cardD=[];
 				cardH=[];
+				imaD=[];
+				imaH=[];
+				imaDe=[];
+				imaHa=[];
 				ini=0;
 
+				
+				sound("bong.mp3");
 				makeCards();
 				evaluate(cardD,cardH);
 			}
@@ -46,10 +123,12 @@
 				console.log("Este es el valor de ini al empezar las cartas:"+ini);
 				console.log("Este es el valor de totHand al hacer un hit: "+totHand);
 				ini++;
+				var imaD = [];
+				var imaH = [];
 				if(ini==1){
 					var carD = [parseInt(Math.random()*13),parseInt(Math.random()*13)];
 					var carH = [parseInt(Math.random()*13),parseInt(Math.random()*13)];
-				}else if(totHand<17){
+				}else if(ini>1 && totHand<17){
 					var carD = [parseInt(Math.random()*13)];
 					var carH = [parseInt(Math.random()*13)];
 				}else{
@@ -65,41 +144,118 @@
 						switch(carD[i]){
 							case 0:
 								carD[i] = "A";
+								imaD[i] = aces[parseInt(Math.random()*4)];
 								break;	
+							case 1:
+								carD[i] = 2;
+								imaD[i] = twos[parseInt(Math.random()*4)];
+								break;
+							case 2:
+								carD[i] = 3;
+								imaD[i] = threes[parseInt(Math.random()*4)];
+								break;
+							case 3:
+								carD[i] = 4;
+								imaD[i] = fours[parseInt(Math.random()*4)];
+								break;
+							case 4:
+								carD[i] = 5;
+								imaD[i] = fives[parseInt(Math.random()*4)];
+								break;
+							case 5:
+								carD[i] = 6;
+								imaD[i] = sixs[parseInt(Math.random()*4)];
+								break;
+							case 6:
+								carD[i] = 7;
+								imaD[i] = sevens[parseInt(Math.random()*4)];
+								break;
+							case 7:
+								carD[i] = 8;
+								imaD[i] = eights[parseInt(Math.random()*4)];
+								break;
+							case 8:
+								carD[i] = 9;
+								imaD[i] = nines[parseInt(Math.random()*4)];
+								break;
+							case 9:
+								carD[i] = 10;
+								imaD[i] = tens[parseInt(Math.random()*4)];
+								break;
 							case 10:
 								carD[i] = "J";
+								imaD[i] = js[parseInt(Math.random()*4)];
 								break;
 							case 11:
 								carD[i] = "Q";
+								imaD[i] = qs[parseInt(Math.random()*4)];
 								break;
 							case 12:
 								carD[i] = "K";
-								break;
-							default:
-								carD[i] += 1;
+								imaD[i] = ks[parseInt(Math.random()*4)];
 								break; 
 						}
+						console.log("lo que se va agregando a imaD: "+imaD);
 					}
 				}
 				for(var k=0; k<carH.length;k++){
 					switch(carH[k]){
-						case 0:
-							carH[k] = "A";
-							break;
-						case 10:
-							carH[k] = "J";
-							break;
-						case 11:
-							carH[k] = "Q";
-							break;
-						case 12:
-							carH[k] = "K";
-							break;
-						default:
-							carH[k] += 1;	
-							break; 
-					}
-
+							case 0:
+								carH[k] = "A";
+								imaH[k] = aces[parseInt(Math.random()*4)];
+								break;	
+							case 1:
+								carH[k] = 2;
+								imaH[k] = twos[parseInt(Math.random()*4)];
+								break;
+							case 2:
+								carH[k] = 3;
+								imaH[k] = threes[parseInt(Math.random()*4)];
+								break;
+							case 3:
+								carH[k] = 4;
+								imaH[k] = fours[parseInt(Math.random()*4)];
+								break;
+							case 4:
+								carH[k] = 5;
+								imaH[k] = fives[parseInt(Math.random()*4)];
+								break;
+							case 5:
+								carH[k] = 6;
+								imaH[k] = sixs[parseInt(Math.random()*4)];
+								break;
+							case 6:
+								carH[k] = 7;
+								imaH[k] = sevens[parseInt(Math.random()*4)];
+								break;
+							case 7:
+								carH[k] = 8;
+								imaH[k] = eights[parseInt(Math.random()*4)];
+								break;
+							case 8:
+								carH[k] = 9;
+								imaH[k] = nines[parseInt(Math.random()*4)];
+								break;
+							case 9:
+								carH[k] = 10;
+								imaH[k] = tens[parseInt(Math.random()*4)];
+								break;
+							case 10:
+								carH[k] = "J";
+								imaH[k] = js[parseInt(Math.random()*4)];
+								break;
+							case 11:
+								carH[k] = "Q";
+								imaH[k] = qs[parseInt(Math.random()*4)];
+								break;
+							case 12:
+								carH[k] = "K";
+								imaH[k] = ks[parseInt(Math.random()*4)];
+								break;
+							default:
+								break; 
+						}
+						console.log("lo que se va agregando a imaH: "+imaH);
 				}
 
 				console.log("Estas son las nuevas cartas formateadas: "+carD +","+carH);
@@ -108,15 +264,32 @@
 				if(ini==1){
 					cardD = carD;
 					cardH = carH;
-				}else if(totHand<17){
+					imaDe = imaD;
+					imaHa = imaH;
+				}else if(ini>1 && totHand<17){
 					cardD.push(carD[0]);
 					cardH.push(carH[0]);
+					imaDe.push(imaD[0]);
+					imaHa.push(imaH[0]);
 				}else{
 					cardH.push(carH[0]);
+					imaHa.push(imaH[0]);
+				}
+
+				console.log("images: "+images.length);
+
+				console.log("srcs dealer: "+imaD);
+				console.log("srcs hand: "+imaH);
+
+				for(var t=0;t<imaDe.length;t++){
+					images[t+2].src=imaDe[t];
+				}
+				for(var p=16;p>16-imaHa.length;p--){
+					images[p].src=imaHa[16-p];
 				}
 				
-				h1s[0].innerHTML = "Dealer: "+cardD.join(", ");
-				h1s[1].innerHTML = "Your Hand: "+cardH.join(", ");
+				//h1s[0].innerHTML = "Dealer: "+cardD.join(", ");
+				//h1s[1].innerHTML = "Your Hand: "+cardH.join(", ");
 
 				console.log("Este es el valor de ini al finalizar las cartas:"+ini);
 			}
@@ -215,13 +388,15 @@
 
 				if(ini==1){
 					if(deWon&&haWon){
-						document.getElementById("win").innerHTML = "It's a tie!";
+						//document.getElementById("win").innerHTML = "It's a tie!";
+						images[9].src="tie.png";
 						input[1].disabled = true;
 						input[2].disabled = true;
 						input[3].disabled = true;
 						ini=0;
 					}else if(deWon){
-						document.getElementById("win").innerHTML = "Dealer Won!";
+						//document.getElementById("win").innerHTML = "Dealer Won!";
+						images[9].src="DealerWon.png";
 						input[1].disabled = true;
 						input[2].disabled = true;
 						input[3].disabled = true;
@@ -229,7 +404,8 @@
 						ear -= parseInt(document.getElementById("bet").value);
 						document.getElementById("earns").innerHTML = "Total Earns: $"+ear;
 					}else if(haWon){
-						document.getElementById("win").innerHTML = "You Won!";
+						//document.getElementById("win").innerHTML = "You Won!";
+						images[9].src="YouWon.png";
 						input[1].disabled = true;
 						input[2].disabled = true;
 						input[3].disabled = true;
@@ -249,13 +425,15 @@
 
 					if(toD<=21 && toHa<=21 && ini>10){
 						if(d==h){
-						document.getElementById("win").innerHTML = "It's a tie!";
-						input[1].disabled = true;
-						input[2].disabled = true;
-						input[3].disabled = true;
-						ini=0;
+							//document.getElementById("win").innerHTML = "It's a tie!";
+							images[9].src="tie.png";
+							input[1].disabled = true;
+							input[2].disabled = true;
+							input[3].disabled = true;
+							ini=0;
 						}else if(d>h||h==0){
-							document.getElementById("win").innerHTML = "You Won!";
+							//document.getElementById("win").innerHTML = "You Won!";
+							images[9].src="YouWon.png";
 							input[1].disabled = true;
 							input[2].disabled = true;
 							input[3].disabled = true;
@@ -264,7 +442,8 @@
 							console.log(ear);
 							document.getElementById("earns").innerHTML = "Total Earns: $"+ear;
 						}else if(d<h||d==0){
-							document.getElementById("win").innerHTML = "Dealer Won!";
+							//document.getElementById("win").innerHTML = "Dealer Won!";
+							images[9].src="DealerWon.png";
 							input[1].disabled = true;
 							input[2].disabled = true;
 							input[3].disabled = true;
@@ -273,7 +452,8 @@
 							document.getElementById("earns").innerHTML = "Total Earns: $"+ear;
 						}
 					}else if(h==0){
-						document.getElementById("win").innerHTML = "You Won!";
+						//document.getElementById("win").innerHTML = "You Won!";
+						images[9].src="YouWon.png";
 						input[1].disabled = true;
 						input[2].disabled = true;
 						input[3].disabled = true;
@@ -282,7 +462,8 @@
 						console.log(ear);
 						document.getElementById("earns").innerHTML = "Total Earns: $"+ear;
 					}else if(d==0){
-						document.getElementById("win").innerHTML = "Dealer Won!";
+						//document.getElementById("win").innerHTML = "Dealer Won!";
+						images[9].src="DealerWon.png";
 						input[1].disabled = true;
 						input[2].disabled = true;
 						input[3].disabled = true;
@@ -290,7 +471,8 @@
 						ear -= parseInt(document.getElementById("bet").value);
 						document.getElementById("earns").innerHTML = "Total Earns: $"+ear;
 					}else if(h<0){
-						document.getElementById("win").innerHTML = "You busted!";
+						//document.getElementById("win").innerHTML = "You busted!";
+						images[9].src="YouBust2.png";
 						input[1].disabled = true;
 						input[2].disabled = true;
 						input[3].disabled = true;
@@ -316,6 +498,7 @@
 				evaluate(cardD,cardH);				
 			
 			}
+ 
 
 		</script>
 	</body>
