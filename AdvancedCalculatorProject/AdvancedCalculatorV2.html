@@ -8,50 +8,140 @@
 		<style type="text/css">
 			input{
 				width: 150px;
-				height: 100px;
-				font-size: 200%;
+				height: 80px;
+				font-size: 350%;
+				background: black;
+				color: yellow;
+				border: solid 5px black;
+				margin:10px;
+				box-shadow: 6px 6px black;
+				text-shadow: 1px red;
+			}
+			.small{
+				width: 105px;
+				height: 80px;
+				font-size: 175%;
+				background: yellow;
+				color: black;
+				margin:10px;
+				border: solid 5px black;
+				box-shadow: 6px 6px black;
+				text-shadow: 1px red;
+			}
+			.small2{
+				width: 105px;
+				height: 80px;
+				font-size: 350%;
+				background: yellow;
+				color: black;
+				margin:10px;
+				border: solid 5px black;
+				box-shadow: 6px 6px black;
+				text-shadow: 1px red;
+			}
+			.equal{
+				width: 630px;
+				height: 80px;
+				font-size: 350%;
+				background: yellow;
+				color: black;
+				border: solid 5px black;
+				margin:10px;
+				box-shadow: 6px 6px black;
+				text-shadow: 1px red;
+			}
+			input:hover{
+				background: yellow;
+				color: black;
+			}
+			.small:hover{
+				background: black;
+				color: yellow;
+			}
+			.small2:hover{
+				background: black;
+				color: yellow;
+			}
+			.equal:hover{
+				background: black;
+				color: yellow;
 			}
 			table{
 				margin: auto;
 			}
 			h1{
-				width: 456px;
-				height: 50px;
-				margin: auto;
+				width: 625px;
+				height: 90px;
+				margin: 30px auto 20px 20px;
 				border: solid 1px black;
 				text-align: right;
-				font-size: 200%;
+				vertical-align: bottom;	
+				font-size: 400%;
+				background: white;
+				border: solid 5px black;
+			}
+			div{
+				width: 675px;
+				height: 895px;
+				background: blue;
+				border: solid 20px red;
+				margin: 100px auto;	
+			}
+			body{
+				background: black;	
 			}
 		</style>
-		<h1 id="h1"></h1>
-		<table>
-			<tr>
-				<th><input type="button" value="1" onclick="screen(this)"></th>
-				<th><input type="button" value="2" onclick="screen(this)"></th>
-				<th><input type="button" value="3" onclick="screen(this)"></th>
-			</tr>
-			<tr>
-				<th><input type="button" value="4" onclick="screen(this)"></th>
-				<th><input type="button" value="5" onclick="screen(this)"></th>
-				<th><input type="button" value="6" onclick="screen(this)"></th>
-			</tr>
-			<tr>
-				<th><input type="button" value="7" onclick="screen(this)"></th>
-				<th><input type="button" value="8" onclick="screen(this)"></th>
-				<th><input type="button" value="9" onclick="screen(this)"></th>
-			</tr>
-			<tr>
-				<th><input type="button" value="+" onclick="operation(this)"></th>
-				<th><input type="button" value="0" onclick="screen(this)"></th>
-				<th><input type="button" value="-" onclick="operation(this)"></th>
-			</tr>
-			<tr>
-				<th><input type="button" value="*" onclick="operation(this)"></th>
-				<th><input type="button" value="/" onclick="operation(this)"></th>
-				<th><input type="button" value="=" onclick="result(this)"></th>
+		<div>
+			<h1 id="h1"></h1>
+			<table>
+				<tr>
+					<th><input class="small" type="button" value="MC" onclick="mem(this)"></th>
+					<th><input class="small" type="button" value="MR" onclick="mem(this)"></th>
+					<th><input class="small" type="button" value="M+" onclick="mem(this)"></th>
+					<th><input class="small" type="button" value="M-" onclick="mem(this)"></th>
+					<th><input class="small" type="button" value="MS" onclick="mem(this)"></th>
+				</tr>
+				<tr>
+					<th><input class="small" type="button" value="C" onclick="mem(this)"></th>
+					<th><input class="small" type="button" value="Del" onclick="mem(this)"></th>
+					<th><input class="small" type="button" value="%" onclick="mem(this)"></th>
+					<th><input style="font-size: 145%" class="small" type="button" value="SqrRoot" onclick="mem(this)"></th>
+					<th><input class="small" type="button" value="x^2" onclick="mem(this)"></th>
+				</tr>
+			</table>
+			<table>
+				
+				<tr>
+					<th><input type="button" value="7" onclick="screen(this)"></th>
+					<th><input type="button" value="8" onclick="screen(this)"></th>
+					<th><input type="button" value="9" onclick="screen(this)"></th>
+					<th><input class="small2" type="button" value="/" onclick="screen(this)"></th>
+				</tr>
+				<tr>
+					<th><input type="button" value="4" onclick="screen(this)"></th>
+					<th><input type="button" value="5" onclick="screen(this)"></th>
+					<th><input type="button" value="6" onclick="screen(this)"></th>
+					<th><input class="small2" type="button" value="*" onclick="operation(this)"></th>
 
-			</tr>
-		</table>
+				</tr>
+				<tr>
+					<th><input type="button" value="1" onclick="screen(this)"></th>
+					<th><input type="button" value="2" onclick="screen(this)"></th>
+					<th><input type="button" value="3" onclick="screen(this)"></th>
+					<th><input class="small2" type="button" value="+" onclick="operation(this)"></th>
+				</tr>
+				<tr>
+					<th><input style="font-size: 250%" type="button" value="+/-" onclick="sign(this)"></th>
+					<th><input type="button" value="0" onclick="screen(this)"></th>
+					<th><input type="button" value="." onclick="dot(this)"></th>
+					<th><input class="small2" type="button" value="-" onclick="operation(this)"></th>
+				</tr>
+				<tr>
+					<th colspan="4"><input class="equal" type="button" value="=" onclick="result(this)"></th>
+
+				</tr>
+			</table>
+		</div>
 
 		<script type="text/javascript">
 
@@ -66,7 +156,9 @@
 				}else if(e.keyCode == 13){
 					console.log("This is auxn before result(), when press enter key:"+auxn);
 					flag=true;
-					result();
+					if(document.getElementById("h1").innerHTML!=""){
+						result();
+					}
 				}
 			});	
 
